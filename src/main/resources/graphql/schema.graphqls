@@ -1,0 +1,36 @@
+type Query {
+    accounts: [AccountDTO]
+    accountById(id: String): AccountDTO
+    customers: [Customer]
+}
+
+type Mutation {
+    addAccount(createAccountDTO: CreateAccountDTO): AccountDTO
+    updateAccount(id: String, createAccountDTO: CreateAccountDTO): AccountDTO
+    deleteAccount(id: String) : Void
+}
+
+type AccountDTO {
+    id: String,
+    createdAt: Float,
+    balance: Float,
+    currency: String,
+    type: String
+    customer: Customer
+}
+
+input CreateAccountDTO {
+    balance: Float,
+    currency: String,
+    type: String
+}
+
+type Customer {
+    id: ID,
+    name: String,
+    accounts: [AccountDTO]
+}
+
+type Void {
+    pleaseIgnoreThisAttributeItsJustForMyCustomVoidTypeBecauseGraphQLDoesntIncludeItLOL: String
+}
